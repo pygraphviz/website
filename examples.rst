@@ -14,4 +14,4 @@ To load a dot file use
 
 >>> G=pgv.AGraph("file.dot")
 
-See more `simple and complicated examples <http://pygraphviz.github.io/documentation/latest/examples.html/>`_.
+See more `simple and complicated examples <http://pygraphviz.github.io/documentation/latest/examples.html>`_.
