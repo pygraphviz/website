@@ -17,9 +17,9 @@ SOURCEDIR     = .
 # Internal variables.
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(SPHINXOPTS) $(SOURCEDIR)
 
-.PHONY: help clean html site linkcheck doctest upload dist
+.PHONY: help clean html linkcheck doctest upload dist github
 
-default: site
+default: html
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -50,10 +50,8 @@ doctest:
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
-# fperez - new targets I've added after sphinx-quickstart
-site: clean html
-	python _scripts/copy_trees.py
 
-# Copy changes to the repo from which they are served
-gh-pages: site
-	python _scripts/gh-pages.py
+github: html
+	touch $(BUILDDIR)/html/.nojekyll
+	ghp-import $(BUILDDIR)/html
+	git push -f git@github.com:pygraphviz/pygraphviz.github.io.git gh-pages:master
